@@ -6,13 +6,29 @@ botaoAdicionar.addEventListener("click", function (event) {
 
   var paciente = obtemPacienteDoFormulario(form);
 
+  adicionaPacienteNaTabela(paciente);
+
+  form.reset();
+
+  var mensagensErro = document.querySelector("#mensagens-erro");
+  mensagensErro.innerHTML = "";
+});
+
+function adicionaPacienteNaTabela(paciente) {
   var pacienteTr = montaTr(paciente);
 
   var tabela = document.querySelector("#tabela-pacientes");
-
   tabela.appendChild(pacienteTr);
+}
 
-  form.reset();
+function exibeMensagensDeErro(erros) {
+  var ul = document.querySelector("#mensagens-erro");
+  ul.innerHTML = "";
+}
+
+erros.forEach(function (erro) {
+  var li = document.createElement("li");
+  li.textContent = erro;
 });
 
 function obtemPacienteDoFormulario(form) {
